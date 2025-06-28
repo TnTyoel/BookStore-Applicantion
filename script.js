@@ -2,27 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
     displayBooks();
 });
 
-const form = 
-document.getElementById('book-form');
-const list = 
-document.getElementById('book-list');
-const search = 
-document.getElementById('search');
+const form = document.getElementById('book-form');
+const list = document.getElementById('book-list');
+const search = document.getElementById('search');
 
 form.addEventListener('submint', function(e) {
     e.preventDefault();
 
-    const title = 
-    document.getElementById('title').value.trim();
+    const title = document.getElementById('title').value.trim();
 
-    const author = 
-    document.getElementById('author').value.trim();
+    const author = document.getElementById('author').value.trim();
 
-    const price = 
-    document.getElementById('price').value.trim();
+    const price = document.getElementById('price').value.trim();
 
-    const category = 
-    document.getElementById('category').value;
+    const category = document.getElementById('category').value;
 
     if (title && author && price && category) {
         const book = {title, author, price, category};
@@ -34,8 +27,7 @@ form.addEventListener('submint', function(e) {
 
 
 function addBook(book) {
-    const li = 
-    document.createElement('li')
+    const li = document.createElement('li')
     li.setAttribute('data-title', book.title.toLowerCase());
     li.setAttribute('data-author', book.author.toLowerCase());
     li.setAttribute('data-category', book.category.toLowerCase());
@@ -57,8 +49,7 @@ function addBook(book) {
 }
 
 function saveBook(book) {
-    let books = 
-    JSON.parse(localStorage.getItem('books')) || [];
+    let books = JSON.parse(localStorage.getItem('books')) || [];
     books.push(book);
     localStorage.setItem('books', JSON.stringify(books));
 }
@@ -71,18 +62,13 @@ function displayBooks() {
 //Live search
 
 search.addEventListener('input', function () {
-    const keyword = 
-    this.value.toLowerCase();
-    const items = 
-    list.querySelectorAll('li');
+    const keyword = this.value.toLowerCase();
+    const items = list.querySelectorAll('li');
 
     items.forEach(item => {
-        const title = 
-        item.getAttribute('data-title');
-        const author = 
-        item.getAttribute('data-author');
-        const category = 
-        item.getAttribute('data-category');
+        const title = item.getAttribute('data-title');
+        const author = item.getAttribute('data-author');
+        const category = item.getAttribute('data-category');
 
         if (
             title.includes(keyword) ||
@@ -97,8 +83,7 @@ search.addEventListener('input', function () {
 });
 
 function deleteBook(bookToDelete) {
-    let books = 
-    JSON.parse(localStorage.getItem('books')) || [];
+    let books = JSON.parse(localStorage.getItem('books')) || [];
     books = books.filter(book => 
         book.title !== bookToDelete.title ||
         book.author !== bookToDelete.author ||
